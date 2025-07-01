@@ -56,7 +56,7 @@ thought I would use that as an excuse to send a few words your way.
 ```
 
 For a more comprehensive example see
-[`example/example.typ`]("./example/example.typ").
+[`example/example.typ`](./example/example.typ).
 
 Arguments
 ---------
@@ -187,4 +187,4 @@ License
 -------
 
 The `pc-letter` package is free and open-source, licensed under the MIT License.
-See the file [`LICENSE`]("./LICENSE") for mor information.
+See the file [`LICENSE`](./LICENSE) for mor information.
