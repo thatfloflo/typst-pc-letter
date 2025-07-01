@@ -1,6 +1,6 @@
-#import "../src/lib.typ" as template
+#import "@preview/pc-letter:0.0.1"
 
-#let letter = template.init(
+#let letter = pc-letter.init(
   author: (
       name: "Sherlock Holmes",
       address: ("221B Baker Street", "London NW1 6XE"),
