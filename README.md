@@ -1,13 +1,11 @@
-`pc-letter`: A simple letter template for personal correspondence.
-==================================================================
+# `pc-letter`: A simple letter template for personal correspondence.
 
 The `pc-letter` template allows you to effortlessly write letters for personal
 correspondence in Typst that will have a classic feel about them yet largely
 follow contemporary format guidance (e.g. compatible with DIN 5008's layout
 recommendations for personal correspondence).
 
-Features
---------
+## Features
 
 - **Adjustable style**: `pc-letter` provides numerous options to tweak fonts,
   font-sizes, colours etc. to your liking.
@@ -19,8 +17,7 @@ Features
 - **Print vs digital variants**: Easily switch between variants tweaked for
   printing or sending out digital-only correspondence.
 
-Usage
------
+## Usage
 
 To use the `pc-letter` template, just import it, initialise it, and add your
 content. Here's a minimal working example:
@@ -58,8 +55,7 @@ thought I would use that as an excuse to send a few words your way.
 For a more comprehensive example see
 [`example/example.typ`](./example/example.typ).
 
-Arguments
----------
+## Arguments
 
 Thhe `pc-letter.init()` function takes the following arguments:
 
@@ -112,8 +108,7 @@ Thhe `pc-letter.init()` function takes the following arguments:
     template tries to pick something appropriate based on the `locale` setting.
     Default: `auto`.
 
-Fields and functions
---------------------
+## Fields and functions
 
 As shown in the example above, `pc-letter.init()` returns a dictionary of
 functions that can be used to add various fields to your letter and help with
@@ -183,8 +178,7 @@ Here's a list of the available fields and functions, assuming you have used
   (attached) documents. If this is a single item it will be set without a
   bullet, if there are more than one they will be set as a bullet list.
 
-License
--------
+## License
 
 The `pc-letter` package is free and open-source, licensed under the MIT License.
 See the file [`LICENSE`](./LICENSE) for mor information.
