@@ -1,14 +1,19 @@
-#import "@preview/pc-letter:0.1.0"
+#import "../lib.typ" as pc-letter
 
 #let letter = pc-letter.init(
   author: (
-      name: "Sherlock Holmes",
-      address: ("221B Baker Street", "London NW1 6XE"),
-      phone: "020 7123 4567",
-      email: "sherlock@example.org"
+      name: "Arsène Lupin",
+      address: ("8 Rue Crevaux", "75116 Paris"),
+      phone: "01 47 51 73 82",
+      email: "lupin@example.org"
   ),
   date: datetime(day: 25, month: 5, year: 2025),
+  place-name: "Paris",
   style: (
+    locale: (
+      lang: "fr",
+      region: "FR",
+    ),
     medium: "digital",
     alignment: (valediction: right),
   ),
@@ -19,19 +24,18 @@
 #(letter.falzmarken)()
 
 #(letter.address-field)[
-  Dr John H. Watson\
-  c/o The Porch House\
-  1 Digbeth Street\
-  Stow-on-the-Wold\
-  Cheltenham GL54 1BN
+  Assane Diop\
+  c/o Benjamin Férel\
+  Marché Biron\
+  85 Rue des Rosiers\
+  93400 Saint-Ouen-sur-Seine
 ]
 
-#(letter.reference-field)[XY/1928/ABC/28]
+#(letter.reference-field)[JST-17/SH]
 
+= Objet : Votre demande concernant un certain détective anglais
 
-Dear Watson,
-
-= Corrections to some recent notes in the case-book
+Monsieur,
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in sapien sed orci sodales mollis eget vel elit. Sed ultricies risus in neque eleifend, malesuada lacinia ipsum iaculis. Pellentesque enim purus, sagittis congue dolor ut, ullamcorper rutrum quam. Praesent suscipit orci at mauris finibus malesuada.
 
@@ -39,16 +43,16 @@ Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculu
 
 In sit amet mi eleifend, viverra tortor ut, ultricies nunc. Etiam mollis neque ac erat placerat, id pharetra nisi tempus. Etiam nisi ipsum, bibendum in nisi eu, euismod finibus libero.
 
-== Subheading
+== Titre d'unu partie inférieure:
 
 Ut metus turpis, varius sed risus ut, tempus mattis odio. Ut a sodales mauris. Vivamus tincidunt purus ex, pellentesque dignissim neque dignissim sed.
 
 Aliquam sem nibh, eleifend facilisis nunc at, elementum eleifend lacus. Vivamus nec justo est. Nam tincidunt felis eget posuere auctor. Vivamus erat purus, elementum eget lobortis eget, rutrum eu felis. Aliquam ex nulla, auctor fermentum enim sed, cursus hendrerit mauris.
 
-Cras ac tortor ut odio accumsan mattis. Proin nec vestibulum nulla. Suspendisse pulvinar ultricies rutrum. Praesent bibendum finibus orci.
+Avec mes remerciements, je vous prie de trouver ici, Monsieur, l’expression de mes sentiments distingués.
 
-#(letter.valediction)(signature: image("sherlock-signature.svg", height: 3em))[Yours sincerely,]
+#(letter.valediction)(signature: text(size: 2.5em, font: ("French Script MT", "Syne Tactile"), "A. Lupin"))[]
 
-#(letter.cc-field)("DI Greg Lestrade", "Mrs Hudson")
+#(letter.enclosed-field)("Plan du site", "Notes manuscrites")
 
-#(letter.enclosed-field)("Map of crime scene", "Original notes on Ormsted")
+#(letter.cc-field)("Claire Laurent")

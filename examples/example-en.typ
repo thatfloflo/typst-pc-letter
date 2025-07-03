@@ -1,4 +1,4 @@
-#import "@preview/pc-letter:0.1.0"
+#import "../lib.typ" as pc-letter
 
 #let letter = pc-letter.init(
   author: (
@@ -9,6 +9,7 @@
   ),
   date: datetime(day: 25, month: 5, year: 2025),
   style: (
+    locale: (lang: "en", region: "GB"),
     medium: "digital",
     alignment: (valediction: right),
   ),
@@ -47,7 +48,9 @@ Aliquam sem nibh, eleifend facilisis nunc at, elementum eleifend lacus. Vivamus 
 
 Cras ac tortor ut odio accumsan mattis. Proin nec vestibulum nulla. Suspendisse pulvinar ultricies rutrum. Praesent bibendum finibus orci.
 
-#(letter.valediction)(signature: image("sherlock-signature.svg", height: 3em))[Yours sincerely,]
+#(letter.valediction)(
+  signature: text(size: 3em, font: ("Edwardian Script ITC", "Syne Tactile"), "Sherlock Holmes")
+)[Yours sincerely,]
 
 #(letter.cc-field)("DI Greg Lestrade", "Mrs Hudson")
 

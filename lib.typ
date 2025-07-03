@@ -1,5 +1,7 @@
 /// pc-letter: A simple template for personal correspondence.
 
+#import "locals.typ"
+
 #let _deep-merge-dicts(a, b) = {
   let result = a
   for (key, value) in b {
@@ -12,7 +14,7 @@
   return result
 }
 
-#let _default_style = (
+#let _default-style = (
   locale: (
     lang: "en",
     region: "GB",
@@ -31,18 +33,29 @@
     )
   ),
   alignment: (
+    address-field: auto,
     headings: auto,
-    valediction: left,
+    reference-field: auto,
+    valediction: auto,
   ),
   page: (
     fill: auto,
   ),
   date: (
     format: auto,
-  )
+  ),
+  components: (
+    place-name: (
+      display: auto,
+      pattern: "[place-name],"
+    ),
+    return-address-field: (
+      display: auto,
+    )
+  ),
 )
 
-#let _default_author = (
+#let _default-author = (
   name: "Sherlock Holmes",
   address: ("221B Baker Street", "London NW1 6XE"),
   phone: "020 7123 4567",
@@ -50,39 +63,29 @@
 )
 
 #let init(
-  author: _default_author,
+  author: _default-author,
   title: none,
   date: auto,
-  style: _default_style
+  place-name: none,
+  style: _default-style
 ) = {
-  
-  author = _deep-merge-dicts(_default_author, author)
-  style = _deep-merge-dicts(_default_style, style)
-  if style.alignment.headings == auto {
-    if style.locale.lang == "de" {
-      style.alignment.headings = left
-    } else {
-      style.alignment.headings = center
-    }
+  author = _deep-merge-dicts(_default-author, author)
+  let tmp-style = _deep-merge-dicts(_default-style, style)
+  let tmp-locale = tmp-style.locale.lang + "-" + tmp-style.locale.region
+  if tmp-locale in locals.default-styles {
+    tmp-style = _deep-merge-dicts(_default-style, locals.default-styles.at(tmp-locale))
+  } else if tmp-style.locale.lang in locals.default-styles {
+    tmp-style = _deep-merge-dicts(_default-style, locals.default-styles.at(tmp-style.locale.lang))
+  } else {
+    // If no matching locale is found even at just the lang level, assume "en"
+    tmp-style = _deep-merge-dicts(_default-style, locals.default-styles.at("en"))
   }
+  style = _deep-merge-dicts(tmp-style, style)
   if style.page.fill == auto {
     if style.medium == "digital" {
       style.page.fill = rgb("#faf9f0")
     } else {
       style.page.fill = none
-    }
-  }
-  if style.date.format == auto {
-    if style.locale.lang == "en" {
-      if style.locale.region == "US" {
-        style.date.format = "[month]/[day]/[year]"
-      } else {
-        style.date.format = "[day padding:none] [month repr:long] [year]"
-      }
-    } else if style.locale.lang == "de" {
-      style.date.format = "[day padding:none].[month].[year]"
-    } else {
-      style.date.format = "[day]/[month]/[year]"
     }
   }
   if date == auto {
@@ -133,49 +136,70 @@
         #author.name #sym.bullet #author.address.join(" " + sym.bullet + " ")
       ]
     }
-    #place(
-      top + left,
-      dx: 0mm,
-      dy: (0mm - 10mm),
-      rect(
-        height: 17.7mm,
-        width: 90mm,
-        stroke: none,
-        [
-          #return-address-field
-          #context place(
-            bottom + left,
-            dx: -2mm,
-            dy: 1.5mm,
-            line(
-              stroke: 0.2mm,
-              length: measure(return-address-field).width + 4mm
-            )
+    #let recipient-field = [
+        #set par(first-line-indent: 0em)
+        #set text(size: style.text.size.small)
+        #recipient-address
+    ]
+    #context {
+      let x-offset = 0mm
+      if style.alignment.address-field == right {
+        x-offset = 210mm - 25mm - 25mm - 2mm
+        if (style.components.return-address-field.display 
+            and measure(return-address-field).width > measure(recipient-field).width) {
+          x-offset -= measure(return-address-field).width
+        } else {
+          x-offset -= measure(recipient-field).width
+        }
+      }
+      if style.components.return-address-field.display {
+        place(
+          top + left,
+          dx: x-offset,
+          dy: (0mm - 10mm),
+          rect(
+            height: 17.7mm,
+            width: 90mm,
+            stroke: none,
+            [
+              #return-address-field
+              #context place(
+                bottom + left,
+                dx: -2mm,
+                dy: 1.5mm,
+                line(
+                  stroke: 0.2mm,
+                  length: measure(return-address-field).width + 4mm
+                )
+              )
+            ]
           )
-        ]
+        )
+      }
+      place(
+        top + left,
+        dx: x-offset,
+        dy: (17.7mm - 10mm),
+        rect(
+          height: 27.3mm,
+          width: 90mm,
+          stroke: none,
+          recipient-field
+        )
       )
-    )
-    #place(
-      top + left,
-      dx: 0mm,
-      dy: (17.7mm - 10mm),
-      rect(
-        height: 27.3mm,
-        width: 90mm,
-        stroke: none,
-        [
-          #set text(size: style.text.size.small)
-          #recipient-address
-        ]
-      )
-    )
+    }
   ]
 
-  let reference-field(reference, supplement: [Ref:]) = [
+  let reference-field(reference, supplement: locals.get-strings(style.locale).reference) = [
+    #let field-alignment = top + style.alignment.reference-field
+    #let y-offset = 0mm
+    #if style.alignment.reference-field == right {
+      y-offset = 10mm
+    }
     #place(
-      top + left,
+      field-alignment,
       dx: 0mm,
-      dy: (65mm - 10mm),
+      dy: 65mm - 10mm - y-offset,
       [#supplement #en-space() #reference]
     )
   ]
@@ -212,7 +236,9 @@
         #set align(right)
         #set text(size: style.text.size.small)
         #if counter(page).final().at(0) > 1 {
-          [Page #counter(page).get().at(0) of #counter(page).final().at(0)]
+          locals.get-strings(style.locale).page-xy
+            .replace("[X]", str(counter(page).get().at(0)))
+            .replace("[Y]", str(counter(page).final().at(0)))
         }
       ]) },
       footer-descent: 10mm,
@@ -235,7 +261,12 @@
       top + right,
       dx: 0mm,
       dy: (65mm - 10mm),
-      [#date.display(style.date.format)]
+      [
+        #if style.components.place-name.display and place-name != none [
+          #style.components.place-name.pattern.replace("[place-name]", place-name)
+        ]
+        #locals.localise-date(date, style.date.format, style.locale)
+      ]
     )
     #v(31.46mm + 45mm - 10mm)
     #body
@@ -253,7 +284,7 @@
     #block(above: 3em, inset: _inset, breakable: false)[
       #valediction
       #if signature != none {
-        signature
+        block(signature)
       } else {
         v(3em)
       }
@@ -269,7 +300,7 @@
     #set par(first-line-indent: 0em)
     #block(inset: _inset, breakable: false)[
       #stack(dir: ltr, spacing: 0.5em)[
-        #text(style: "italic", "cc:")
+        #text(style: "italic", locals.get-strings(style.locale).carbon-copy)
       ][
         #if recipients.pos().len() < 3 {
           recipients.pos().join(", ")
@@ -288,7 +319,7 @@
     #set par(first-line-indent: 0em)
     #block(inset: _inset, breakable: false)[
       #stack(dir: ltr, spacing: 0.5em)[
-        #text(style: "italic", "encl:")
+        #text(style: "italic", locals.get-strings(style.locale).enclosed)
       ][
         #if enclosures.pos().len() < 2 {
           enclosures.pos().at(0)
@@ -302,6 +333,7 @@
   ]
 
   return (
+    style: style,
     spaced-smallcaps: spaced-smallcaps,
     thin-space: thin-space,
     en-space: en-space,

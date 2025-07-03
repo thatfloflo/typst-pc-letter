@@ -1,14 +1,19 @@
-#import "@preview/pc-letter:0.1.0"
+#import "../lib.typ" as pc-letter
 
 #let letter = pc-letter.init(
   author: (
-      name: "Sherlock Holmes",
-      address: ("221B Baker Street", "London NW1 6XE"),
-      phone: "020 7123 4567",
-      email: "sherlock@example.org"
+      name: "Georg Wilsberg",
+      address: ("Frauenstraße 49/50", "48143 Münster"),
+      phone: "0251/385 317",
+      email: "wilsberg@example.org"
   ),
-  date: datetime(day: 25, month: 5, year: 2025),
+  date: datetime(day: 8, month: 2, year: 2020),
+  place-name: "Münster",
   style: (
+    locale: (
+      lang: "de",
+      region: "DE",
+    ),
     medium: "digital",
     alignment: (valediction: right),
   ),
@@ -19,19 +24,17 @@
 #(letter.falzmarken)()
 
 #(letter.address-field)[
-  Dr John H. Watson\
-  c/o The Porch House\
-  1 Digbeth Street\
-  Stow-on-the-Wold\
-  Cheltenham GL54 1BN
+  Frau Tessa Tilker\
+  Livesey, Trelawney & Gunn LLP\
+  Birkenenallee 13\
+  48143 Münster
 ]
 
-#(letter.reference-field)[XY/1928/ABC/28]
+#(letter.reference-field)[LTG/2020/02/ofo]
 
+= Betreff: Beratende Tätigkeit im Fall Folkerts
 
-Dear Watson,
-
-= Corrections to some recent notes in the case-book
+Sehr geehrte Frau Tilker,
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in sapien sed orci sodales mollis eget vel elit. Sed ultricies risus in neque eleifend, malesuada lacinia ipsum iaculis. Pellentesque enim purus, sagittis congue dolor ut, ullamcorper rutrum quam. Praesent suscipit orci at mauris finibus malesuada.
 
@@ -39,16 +42,16 @@ Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculu
 
 In sit amet mi eleifend, viverra tortor ut, ultricies nunc. Etiam mollis neque ac erat placerat, id pharetra nisi tempus. Etiam nisi ipsum, bibendum in nisi eu, euismod finibus libero.
 
-== Subheading
+== Überschrift einer Untersektion:
 
 Ut metus turpis, varius sed risus ut, tempus mattis odio. Ut a sodales mauris. Vivamus tincidunt purus ex, pellentesque dignissim neque dignissim sed.
 
 Aliquam sem nibh, eleifend facilisis nunc at, elementum eleifend lacus. Vivamus nec justo est. Nam tincidunt felis eget posuere auctor. Vivamus erat purus, elementum eget lobortis eget, rutrum eu felis. Aliquam ex nulla, auctor fermentum enim sed, cursus hendrerit mauris.
 
-Cras ac tortor ut odio accumsan mattis. Proin nec vestibulum nulla. Suspendisse pulvinar ultricies rutrum. Praesent bibendum finibus orci.
+#(letter.valediction)(
+  signature: text(size: 1.5em, font: ("Lucida Handwriting", "Syne Tactile"), "Wilsberg")
+)[Mit freundlichen Grüßen,]
 
-#(letter.valediction)(signature: image("sherlock-signature.svg", height: 3em))[Yours sincerely,]
+#(letter.cc-field)("Alex Holtkamp, Ekki Talkötter")
 
-#(letter.cc-field)("DI Greg Lestrade", "Mrs Hudson")
-
-#(letter.enclosed-field)("Map of crime scene", "Original notes on Ormsted")
+#(letter.enclosed-field)("Ursprüngl. Testament", "Angefochtenes Folgetestament", "Gutachten Steinthal")

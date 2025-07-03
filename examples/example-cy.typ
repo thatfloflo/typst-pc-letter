@@ -1,14 +1,18 @@
-#import "@preview/pc-letter:0.1.0"
+#import "../lib.typ" as pc-letter
 
 #let letter = pc-letter.init(
   author: (
-      name: "Sherlock Holmes",
-      address: ("221B Baker Street", "London NW1 6XE"),
-      phone: "020 7123 4567",
-      email: "sherlock@example.org"
+      name: "Thomas Mathias",
+      address: ("7B Cae Mely", "Aberystwyth SY23 2HA"),
+      phone: "01970 612 125",
+      email: "tom.mathias@example.org"
   ),
-  date: datetime(day: 25, month: 5, year: 2025),
+  date: datetime(day: 29, month: 10, year: 2013),
+  place-name: "Münster",
   style: (
+    locale: (
+      lang: "cy",
+    ),
     medium: "digital",
     alignment: (valediction: right),
   ),
@@ -19,19 +23,18 @@
 #(letter.falzmarken)()
 
 #(letter.address-field)[
-  Dr John H. Watson\
-  c/o The Porch House\
-  1 Digbeth Street\
-  Stow-on-the-Wold\
-  Cheltenham GL54 1BN
+  DCS Brian Prosser\
+  Gorsaf Heddlu Aberystwyth\
+  Boulevard Siant Brieuc\
+  Aberystwyth\
+  Ceredigion SY23 1PH
 ]
 
-#(letter.reference-field)[XY/1928/ABC/28]
+#(letter.reference-field)[DPP/2013/10/HR-621]
 
+Annwyl Syr,
 
-Dear Watson,
-
-= Corrections to some recent notes in the case-book
+= Trosglwyddiad i'ch uned yn Aberystwyth
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in sapien sed orci sodales mollis eget vel elit. Sed ultricies risus in neque eleifend, malesuada lacinia ipsum iaculis. Pellentesque enim purus, sagittis congue dolor ut, ullamcorper rutrum quam. Praesent suscipit orci at mauris finibus malesuada.
 
@@ -39,16 +42,17 @@ Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculu
 
 In sit amet mi eleifend, viverra tortor ut, ultricies nunc. Etiam mollis neque ac erat placerat, id pharetra nisi tempus. Etiam nisi ipsum, bibendum in nisi eu, euismod finibus libero.
 
-== Subheading
+== Eisampl o is-bennawd
 
 Ut metus turpis, varius sed risus ut, tempus mattis odio. Ut a sodales mauris. Vivamus tincidunt purus ex, pellentesque dignissim neque dignissim sed.
 
 Aliquam sem nibh, eleifend facilisis nunc at, elementum eleifend lacus. Vivamus nec justo est. Nam tincidunt felis eget posuere auctor. Vivamus erat purus, elementum eget lobortis eget, rutrum eu felis. Aliquam ex nulla, auctor fermentum enim sed, cursus hendrerit mauris.
 
-Cras ac tortor ut odio accumsan mattis. Proin nec vestibulum nulla. Suspendisse pulvinar ultricies rutrum. Praesent bibendum finibus orci.
+#(letter.valediction)(
+  signature: text(size: 1.5em, font: ("Lucida Handwriting", "Syne Tactile"), "T. Mathias"),
+  name: "Tom Mathias"
+)[Yr eiddoch yn gywir,]
 
-#(letter.valediction)(signature: image("sherlock-signature.svg", height: 3em))[Yours sincerely,]
+#(letter.cc-field)("DI Mared Rhys", "DS Siân Owens", "DC Lloyd Elis")
 
-#(letter.cc-field)("DI Greg Lestrade", "Mrs Hudson")
-
-#(letter.enclosed-field)("Map of crime scene", "Original notes on Ormsted")
+#(letter.enclosed-field)("Cynllun ail-strwythuro'r uned")

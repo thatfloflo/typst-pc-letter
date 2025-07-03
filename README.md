@@ -23,7 +23,7 @@ To use the `pc-letter` template, just import it, initialise it, and add your
 content. Here's a minimal working example:
 
 ```typst
-#import "@preview/pc-letter:0.0.1"
+#import "@preview/pc-letter:0.1.0"
 
 #let letter = pc-letter.init(
     author: (
