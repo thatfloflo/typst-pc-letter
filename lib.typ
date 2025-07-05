@@ -68,7 +68,7 @@
   title: none,
   date: auto,
   place-name: none,
-  style: _default-style
+  style: (:)
 ) = {
   author = _deep-merge-dicts(_default-author, author)
   let tmp-style = _deep-merge-dicts(_default-style, style)
