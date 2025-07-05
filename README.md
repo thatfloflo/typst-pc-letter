@@ -10,6 +10,8 @@ The `pc-letter` template allows you to effortlessly write letters for personal c
 - **Context aware page numbering**: No need to manually configure, `pc-letter` will add page numbering for you if your content flows over a single page.
 - **Print vs digital variants**: Easily switch between variants tweaked for printing or sending out digital-only correspondence.
 
+<a href="./thumbnail.png"><img src="./thumbnail.png" width="250px" alt="Example of a letter written with pc-letter."></a>
+
 ## Usage
 
 To use the `pc-letter` template, just import it, initialise it, and add your content. Here's a minimal working example:
