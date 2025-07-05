@@ -11,7 +11,6 @@
   style: (
     locale: (lang: "en", region: "GB"),
     medium: "digital",
-    alignment: (valediction: right),
   ),
 )
 

@@ -3,6 +3,7 @@
   cy: (
     alignment: (
       address-field: left,
+      date-field: right,
       headings: center,
       reference-field: left,
       valediction: right,
@@ -22,8 +23,9 @@
   de: (
     alignment: (
       address-field: left,
+      date-field: right,
       headings: left,
-      reference-field: right,
+      reference-field: left,
       valediction: left,
     ),
     date: (
@@ -42,6 +44,7 @@
   en-GB: (
     alignment: (
       address-field: left,
+      date-field: right,
       headings: center,
       reference-field: left,
       valediction: right,
@@ -61,12 +64,13 @@
   en: (
     alignment: (
       address-field: left,
+      date-field: right,
       headings: left,
       reference-field: left,
       valediction: left,
     ),
     date: (
-      format: "[month]/[day]/[year]",
+      format: "[month repr:long] [day padding:none], [year]",
     ),
     components: (
       place-name: (
@@ -77,11 +81,52 @@
       ),
     ),
   ),
+  es: (
+    alignment: (
+      address-field: left,
+      date-field: right + top,
+      headings: left,
+      reference-field: left,
+      valediction: right,
+    ),
+    date: (
+      format: "[day padding:none] de [month repr:long] de [year]",
+    ),
+    components: (
+      place-name: (
+        display: true,
+      ),
+      return-address-field: (
+        display: false,
+      ),
+    ),
+  ),
+  es-ES: (
+    alignment: (
+      address-field: left,
+      date-field: right + horizon,
+      headings: left,
+      reference-field: right + bottom,
+      valediction: left,
+    ),
+    date: (
+      format: "[day padding:none] de [month repr:long] de [year]",
+    ),
+    components: (
+      place-name: (
+        display: true,
+      ),
+      return-address-field: (
+        display: false,
+      ),
+    ),
+  ),
   fr: (
     alignment: (
       address-field: right,
+      date-field: right,
       headings: left,
-      reference-field: right,
+      reference-field: right + horizon,
       valediction: right,
     ),
     date: (
@@ -103,7 +148,8 @@
   cy: (
     reference:   "Cyf:",
     carbon-copy: "c.c.:",
-    enclosed:    "amg.:",
+    enclosed-sg: "amg.:",
+    enclosed-pl: "amg.:",
     page-xy:     "Tudalen [X] o [Y]",
     months: (
       "1": "Ionawr",
@@ -123,7 +169,8 @@
   de: (
     reference:   "Referenz:",
     carbon-copy: "In Kopie:",
-    enclosed:    "Anhänge:",
+    enclosed-sg: "Anhang:",
+    enclosed-pl: "Anhänge:",
     page-xy:     "Page [X] of [Y]",
     months: (
       "1": "Januar",
@@ -143,7 +190,8 @@
   de-AT: (
     reference:   "Referenz:",
     carbon-copy: "In Kopie:",
-    enclosed:    "Anhänge:",
+    enclosed-sg: "Anhang:",
+    enclosed-pl: "Anhänge:",
     page-xy:     "Seite [X] von [Y]",
     months: (
       "1": "Jänner",
@@ -163,7 +211,8 @@
   en: (
     reference:   "Ref:",
     carbon-copy: "cc:",
-    enclosed:    "encl:",
+    enclosed-sg: "encl:",
+    enclosed-pl: "encl:",
     page-xy:     "Page [X] of [Y]",
     months: (
       "1": "January",
@@ -180,10 +229,32 @@
       "12": "December",
     )
   ),
+  es: (
+    reference:   "ref.:",
+    carbon-copy: "c.c.",
+    enclosed-sg: "Anexo:",
+    enclosed-pl: "Anexos:",
+    page-xy:     "Página [X] de [Y]",
+    months: (
+      "1": "enero",
+      "2": "febrero",
+      "3": "marzo",
+      "4": "abril",
+      "5": "mayo",
+      "6": "junio",
+      "7": "julio",
+      "8": "agosto",
+      "9": "septiembre",
+      "10": "octubre",
+      "11": "noviembre",
+      "12": "diciembre",
+    )
+  ),
   fr: (
     reference:   "Réf:",
     carbon-copy: "cc:",
-    enclosed:    "pj:",
+    enclosed-sg: "pj:",
+    enclosed-pl: "pj:",
     page-xy:     "page [X] sur [Y]",
     months: (
       "1": "janvier",

@@ -34,6 +34,7 @@
   ),
   alignment: (
     address-field: auto,
+    date-field: auto,
     headings: auto,
     reference-field: auto,
     valediction: auto,
@@ -191,15 +192,17 @@
   ]
 
   let reference-field(reference, supplement: locals.get-strings(style.locale).reference) = [
-    #let field-alignment = top + style.alignment.reference-field
+    #let field-alignment = top + style.alignment.reference-field.x
     #let y-offset = 0mm
-    #if style.alignment.reference-field == right {
-      y-offset = 10mm
+    #if style.alignment.reference-field.y == horizon {
+      y-offset = -10mm
+    } else if style.alignment.reference-field.y == top {
+      y-offset = -55mm
     }
     #place(
       field-alignment,
       dx: 0mm,
-      dy: 65mm - 10mm - y-offset,
+      dy: 65mm - 10mm + y-offset,
       [#supplement #en-space() #reference]
     )
   ]
@@ -257,10 +260,19 @@
     #show heading: set block(above: 1em, below: 1em)
     #show heading.where(level: 1): set text(size: style.text.size.normal, weight: "bold")
     #show heading.where(level: 2): set text(size: style.text.size.normal, weight: "regular", style: "italic")
+    #let date-y-offset = 0mm
+    #if style.alignment.date-field.y == top {
+      date-y-offset = -55mm
+    } else if style.alignment.date-field.y == horizon {
+      date-y-offset = -10mm
+    }
+    #if style.alignment.date-field.x == none {
+      style.alignment.date-field.x = right
+    }
     #place(
-      top + right,
+      top + style.alignment.date-field.x,
       dx: 0mm,
-      dy: (65mm - 10mm),
+      dy: 65mm - 10mm + date-y-offset,
       [
         #if style.components.place-name.display and place-name != none [
           #style.components.place-name.pattern.replace("[place-name]", place-name)
@@ -318,17 +330,23 @@
     }
     #set par(first-line-indent: 0em)
     #block(inset: _inset, breakable: false)[
-      #stack(dir: ltr, spacing: 0.5em)[
-        #text(style: "italic", locals.get-strings(style.locale).enclosed)
-      ][
-        #if enclosures.pos().len() < 2 {
-          enclosures.pos().at(0)
-        } else {
-          for enclosure in enclosures.pos() {
+      #if enclosures.pos().len() < 2 {
+        stack(dir: ltr, spacing: 0.5em)[
+          #text(style: "italic", locals.get-strings(style.locale).enclosed-sg)
+        ][
+          #enclosures.pos().at(0)
+        ]
+      } else {
+        stack(dir: ltr, spacing: 0.5em)[
+          #text(style: "italic", locals.get-strings(style.locale).enclosed-pl)
+        ][
+          #for enclosure in enclosures.pos() {
             [- #enclosure]
           }
-        }
-      ]
+        ]
+
+      }
+      
     ]
   ]
 

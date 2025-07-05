@@ -2,23 +2,29 @@
 
 #let letter = pc-letter.init(
   author: (
+      // Change this to your own address
       name: "Sherlock Holmes",
       address: ("221B Baker Street", "London NW1 6XE"),
       phone: "020 7123 4567",
       email: "sherlock@example.org"
   ),
+  // Remove to automatically insert today's date
   date: datetime(day: 25, month: 5, year: 2025),
   style: (
+    // Adjust to reflect your language and region
+    locale: (lang: "en", region: "GB"),
+    // If intending to print, change this to "print"
     medium: "digital",
-    alignment: (valediction: right),
   ),
 )
 
 #show: letter.letter-style
 
+// Remove if you don't want the falzmarken in the left margin
 #(letter.falzmarken)()
 
 #(letter.address-field)[
+  // Enter the recipient's address here
   Dr John H. Watson\
   c/o The Porch House\
   1 Digbeth Street\
@@ -26,6 +32,7 @@
   Cheltenham GL54 1BN
 ]
 
+// Remove this if you don't need to quote a reference number
 #(letter.reference-field)[XY/1928/ABC/28]
 
 
@@ -47,8 +54,20 @@ Aliquam sem nibh, eleifend facilisis nunc at, elementum eleifend lacus. Vivamus 
 
 Cras ac tortor ut odio accumsan mattis. Proin nec vestibulum nulla. Suspendisse pulvinar ultricies rutrum. Praesent bibendum finibus orci.
 
-#(letter.valediction)(signature: image("sherlock-signature.svg", height: 3em))[Yours sincerely,]
 
-#(letter.cc-field)("DI Greg Lestrade", "Mrs Hudson")
+#(letter.valediction)(
+  signature: image("signature.svg", height: 3em)
+)[Yours sincerely,]
 
-#(letter.enclosed-field)("Map of crime scene", "Original notes on Ormsted")
+
+// Remove if you don't intend to send copies to anyone
+#(letter.cc-field)(
+  "DI Greg Lestrade",
+  "Mrs Hudson",
+)
+
+// Remove if you don't have any attachments
+#(letter.enclosed-field)(
+  "Map of crime scene",
+  "Original notes on Ormsted",
+)
