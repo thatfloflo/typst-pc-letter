@@ -171,7 +171,7 @@
     carbon-copy: "In Kopie:",
     enclosed-sg: "Anhang:",
     enclosed-pl: "Anhänge:",
-    page-xy:     "Page [X] of [Y]",
+    page-xy:     "Seite [X] von [Y]",
     months: (
       "1": "Januar",
       "2": "Februar",
