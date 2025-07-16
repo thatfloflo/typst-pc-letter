@@ -17,7 +17,7 @@ The `pc-letter` template allows you to effortlessly write letters for personal c
 To use the `pc-letter` template, just import it, initialise it, and add your content. Here's a minimal working example:
 
 ```typst
-#import "@preview/pc-letter:0.1.0"
+#import "@preview/pc-letter:0.2.0"
 
 #let letter = pc-letter.init(
     author: (
@@ -104,7 +104,7 @@ Please note that `pc-letter` currently only supports A4 paper, so is currently o
 
 As shown in the example above, `pc-letter.init()` returns a dictionary of functions that can be used to add various fields to your letter and help with formatting your text.
 
-*Important:* To call any of these functions, you have to enclose them in parentheses. So it should be `#(letter.spaced-smallcaps)[My Text]`:heavy_check_mark: rather than `#letter.spaced-smallcaps[My Text]`:bomb:, the latter of which will produce an error. This is currently a limitation of Typst's module-model and might change in future.
+*Important:* To call any of these functions, you have to enclose them in parentheses. So it should be `#(letter.spaced-smallcaps)[My Text]`✔️ rather than `#letter.spaced-smallcaps[My Text]`💣, the latter of which will produce an error. This is currently a limitation of Typst's module-model and might change in future.
 
 Here's a list of the available fields and functions, assuming you have used `#let letter = pc-letter.init()` to collect them in the variable `letter`:
 
@@ -125,3 +125,24 @@ Here's a list of the available fields and functions, assuming you have used `#le
 ## License
 
 The `pc-letter` package is free and open-source, licensed under the MIT License. See the file [`LICENSE`](./LICENSE) for mor information.
+
+## Change log
+
+### v0.2.0
+
+#### Added
+
+- Author's details (`author` argument of `pc-letter.init`) now also accepts a `web` argument where an author can include their homepage address.
+
+#### Changed
+
+- The default `medium` (`style` argument of `pc-letter.init`) is now `"print"` (previously `"digital"`), because a letter set for printing will work digitally without problems, but one set for digital-only use (with background fill and such) may well produce problems when printing.
+- Author's address (`author.address` argument of `pc-letter.init`) is now optional.
+- Author's contact details (phone, email, web) (`author.phone`, `author.email`, `author.web` arguments of `pc-letter.init`) are now all optional and break across two lines iff more than two of them are specified.
+- Headings (used for subject lines and as section separators) now get 1.25em spacing above and below (previously 1em), making them subtly more prominent as separators in the text body.
+- Internal calculations for spacing of different fields is now relative to page dimensions and margins, which will help with implementing different paper sizes (e.g. `us-letter`) in future versions of `pc-letter`.
+- The package now has full [`tidy`](https://typst.app/universe/package/tidy/) 0.4.0-compatible doc comments. While `tinymist` still only parses the pre-0.4.0 style comments, it is expected that this will also enhance hinting for users once `tinymist` implements the up-to-date doc comment style. The dictionary-passing method of initialisation may still pose a problem for this, but the change should generally aid in future-proofing the package.
+
+#### Fixed
+
+- Missing translation of pagination for non-Austrian German fixed.

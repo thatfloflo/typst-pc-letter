@@ -1,4 +1,4 @@
-#import "@preview/pc-letter:0.1.0"
+#import "@preview/pc-letter:0.2.0"
 
 #let letter = pc-letter.init(
   author: (
