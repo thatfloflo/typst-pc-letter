@@ -5,14 +5,11 @@
       name: "Thomas Mathias",
       address: ("7B Cae Melyn", "Aberystwyth SY23 2HA"),
       phone: "01970 612 125",
-      email: "tom.mathias@example.org"
+      email: "tom.mathias@example.org",
   ),
   date: datetime(day: 29, month: 10, year: 2013),
-  place-name: "Münster",
   style: (
-    locale: (
-      lang: "cy",
-    ),
+    locale: (lang: "cy"),
     medium: "digital",
   ),
 )

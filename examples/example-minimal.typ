@@ -7,8 +7,8 @@
         "56B Whitehaven Mansions",
         "London EC2Y 5HN"
       ),
-      phone: "020 7123 4567",
-      email: "hercule.poirot@example.org"
+      // phone: "020 7123 4567",
+      // email: "hercule.poirot@example.org"
   ),
 )
 

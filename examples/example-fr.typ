@@ -5,15 +5,13 @@
       name: "Arsène Lupin",
       address: ("8 Rue Crevaux", "75116 Paris"),
       phone: "01 47 51 73 82",
-      email: "lupin@example.org"
+      email: "lupin@example.org",
+      web: "https://www.example.org"
   ),
   date: datetime(day: 25, month: 5, year: 2025),
   place-name: "Paris",
   style: (
-    locale: (
-      lang: "fr",
-      region: "FR",
-    ),
+    locale: (lang: "fr", region: "FR"),
     medium: "digital",
     alignment: (valediction: right),
   ),

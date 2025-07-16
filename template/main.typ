@@ -6,7 +6,8 @@
       name: "Sherlock Holmes",
       address: ("221B Baker Street", "London NW1 6XE"),
       phone: "020 7123 4567",
-      email: "sherlock@example.org"
+      email: "sherlock@example.org",
+      // web: "https://www.example.org",  // Optionally add your homepage
   ),
   // Remove to automatically insert today's date
   date: datetime(day: 25, month: 5, year: 2025),

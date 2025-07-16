@@ -5,15 +5,12 @@
       name: "Georg Wilsberg",
       address: ("Frauenstraße 49/50", "48143 Münster"),
       phone: "0251/385 317",
-      email: "wilsberg@example.org"
+      email: "wilsberg@example.org",
   ),
   date: datetime(day: 8, month: 2, year: 2020),
   place-name: "Münster",
   style: (
-    locale: (
-      lang: "de",
-      region: "DE",
-    ),
+    locale: (lang: "de", region: "DE"),
     medium: "digital",
     alignment: (valediction: right),
   ),

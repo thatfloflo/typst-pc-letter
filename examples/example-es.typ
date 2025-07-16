@@ -5,7 +5,7 @@
       name: "Juan García Madero",
       address: ("Andrés Bello Nº 10", "Col. Polanco", "11560 México, CDMX"),
       phone: "032 928 384",
-      email: "juangarcia@example.org"
+      email: "juangarcia@example.org",
   ),
   date: datetime(day: 6, month: 8, year: 1998),
   style: (
