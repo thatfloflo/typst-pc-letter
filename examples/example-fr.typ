@@ -41,7 +41,7 @@ Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculu
 
 In sit amet mi eleifend, viverra tortor ut, ultricies nunc. Etiam mollis neque ac erat placerat, id pharetra nisi tempus. Etiam nisi ipsum, bibendum in nisi eu, euismod finibus libero.
 
-== Titre d'unu partie inférieure:
+== Titre d'une partie inférieure:
 
 Ut metus turpis, varius sed risus ut, tempus mattis odio. Ut a sodales mauris. Vivamus tincidunt purus ex, pellentesque dignissim neque dignissim sed.
 
