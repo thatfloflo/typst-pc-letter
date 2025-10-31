@@ -62,13 +62,16 @@
     format: auto,
   ),
   components: (
+    letterhead: (
+      ascent: auto,
+    ),
     place-name: (
       display: auto,
       pattern: "[place-name],"
     ),
     return-address-field: (
       display: auto,
-    )
+    ),
   ),
 )
 
@@ -138,6 +141,22 @@
   /// 
   /// -> str | none
   place-name: none,
+  /// A logo to display as part of the letterhead
+  /// 
+  /// Can be used to optionally specify an image (or anything of type `content`
+  /// really) to be displayed alongside the information in the letterhead.
+  /// 
+  /// *Example:*
+  /// ````typ
+  /// #letter = pc-letter.init(
+  ///   author: (name: "Sherlock Holmes"),
+  ///   logo: image("monogram-sh.svg", height: 10mm)
+  /// )
+  /// 
+  /// #show: letter.letter-style
+  /// ```
+  /// -> content | none
+  logo: none,
   /// Custom styling options for the letter
   /// 
   /// Can be used to configure custom styling options for the letter. Most
@@ -328,6 +347,13 @@
       style.page.fill = rgb("#faf9f0")
     } else {
       style.page.fill = none
+    }
+  }
+  if style.components.letterhead.ascent == auto {
+    if logo != none and style.alignment.letterhead == center {
+      style.components.letterhead.ascent = 5mm
+    } else {
+      style.components.letterhead.ascent = 12mm
     }
   }
   // Prepare letter date
@@ -549,22 +575,42 @@
     )
   ]
 
-  let _header = [
+  let _letterhead = [
     #set align(style.alignment.letterhead)
-    #text(
-      weight: 500,
-      size: 1.125em,
-      fill: style.text.fill.headline,
-      spaced-smallcaps[#author.name]
-    )\
-    #set text(size: style.text.size.small, fill: style.text.fill.faded)
-    #if _prepared-author-address != none {
-      _prepared-author-address
-      linebreak()
+    #let stack-dir = ttb
+    #if style.alignment.letterhead.x == left {
+      stack-dir = ltr
     }
-    #if _prepare-author-contact-details != none {
-      _prepared-author-contact-details
+    #if style.alignment.letterhead.x == right {
+      stack-dir = rtl
     }
+    #stack(dir: stack-dir)[
+      #if logo != none {
+        let logo-pad-y = -1mm
+        if style.alignment.letterhead == center {
+          logo-pad-y = 0mm
+        }
+        pad(
+          y: logo-pad-y,
+          logo
+        )
+      }
+    ][
+      #text(
+        weight: 500,
+        size: 1.125em,
+        fill: style.text.fill.headline,
+        spaced-smallcaps[#author.name]
+      )\
+      #set text(size: style.text.size.small, fill: style.text.fill.faded)
+      #if _prepared-author-address != none {
+        _prepared-author-address
+        linebreak()
+      }
+      #if _prepare-author-contact-details != none {
+        _prepared-author-contact-details
+      }
+    ]
   ]
 
   /// Style function for the document's body
@@ -588,8 +634,13 @@
     #set page(
       paper: "a4",
       margin: _page-margins,
-      header: rect(width: 100%, height: 100%, stroke: none, _header),
-      header-ascent: 12mm,
+      header: rect(
+        width: 100%,
+        height: 100%,
+        stroke: none,
+        _letterhead
+      ),
+      header-ascent: style.components.letterhead.ascent,
       footer: context { rect(width: 100%, stroke: none, height: 100%, [
         #set align(right)
         #set text(size: style.text.size.small)

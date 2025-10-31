@@ -54,6 +54,7 @@ The `pc-letter.init()` function takes the following arguments:
 - `title` (optional): A string that will be used as a document title (in the document metadata only, it will not appear anywhere on the letter), or `none`. Default: `none`.
 - `date` (optional): A `datetime` object with the date of the letter. Defaults to the current date if not provided or set to `auto`.
 - `place-name` (optional): A place name, usually the town or city where the letter was written.
+- `logo` (optional): A `content` object (usually an `image`) forming a logo that should be displayed as part of the letterhead. The placement depends on `style.alignment.letterhead`: to the left of the letterhead if left-aligned, to the right of the letterhead if right-aligned, and on top of the letterhead if centre-aligned.
 - `style` (optional): A dictionary with various style options you can modify. The dictionary may have the following fields:
   - `locale.lang`: The two-letter language code of the language the letter is (mainly) written in. Default: `"en"`.
   - `locale.region`: The two-letter region code of the letter's locale. Default: `"GB"`.
@@ -73,6 +74,7 @@ The `pc-letter.init()` function takes the following arguments:
   - `alignment.valediction`: Whether the valediction at the end of the letter should appear flush `left`, or indented to the `right` half of the page. Default: `auto`.
   - `page.fill`: A background fill colour for the page(s). If set to `auto` the value will be determined based on the value for `medium`: blank for print, #faf9f0 (a light, warm off-white) for digital. Default: `auto`.
   - `date.format`: A Typst date format string (e.g. `"[year]-[month pad:zero]-[day pad:zero]"`) or `auto`, in which case the template tries to pick something appropriate based on the `locale` setting. Default: `auto`.
+  - `components.letterhead.ascent`: The distance from the top of the address field to the bottom of the letterhead. If set to `auto` this will be `12mm` unless there is a logo placed on top of the letterhead above the name, in which case it will be reduced to `5mm`. Default: `auto`.
   - `components.place-name.display`: Whether to display the place name next to the date (`true` or `false`). Note that even if this is set to `true`, a place name is only shown on the letter if it is specified as an argument to `pc-letter.init()`. Default: `auto`.
   - `components.place-name.pattern`: A pattern to format the place name, where `"[place-name]"` will be replaced with the place name. Default: `"[place-name],"`.
   - `components.return-address-field.display`: Whether to display the return address field immediately on top of the recipient's address or not (`true` or `false`). Default: `auto`.
