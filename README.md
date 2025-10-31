@@ -68,6 +68,7 @@ The `pc-letter.init()` function takes the following arguments:
   - `alignment.address-field`: Whether to align the address field `left` or `right`. Default: `auto`.
   - `alignment.date-field`: How to align the date field. Horizontally `left`, `center` or `right`, and vertically `top`, `bottom` or `horizon` (`horizon` aligns it just above the first falzmarke). Default: `auto`.
   - `alignment.headings`: Whether to align headings (first and second level) flush `left` or `center`-ed. Default: `auto`.
+  - `alignment.letterhead`: Whether to align the letterhead to the `left`, `right` or `center` of the page. Default: `center`.
   - `alignment.reference-field`: How to align the reference field. Horizontally `left` or `right`, and vertically `top`, `bottom` or `horizon` (`horizon` aligns it just above the first falzmarke). Default: `auto`.
   - `alignment.valediction`: Whether the valediction at the end of the letter should appear flush `left`, or indented to the `right` half of the page. Default: `auto`.
   - `page.fill`: A background fill colour for the page(s). If set to `auto` the value will be determined based on the value for `medium`: blank for print, #faf9f0 (a light, warm off-white) for digital. Default: `auto`.

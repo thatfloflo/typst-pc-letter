@@ -53,6 +53,7 @@
     headings: auto,
     reference-field: auto,
     valediction: auto,
+    letterhead: center,
   ),
   page: (
     fill: auto,
@@ -549,7 +550,7 @@
   ]
 
   let _header = [
-    #set align(center)
+    #set align(style.alignment.letterhead)
     #text(
       weight: 500,
       size: 1.125em,
