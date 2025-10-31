@@ -4,10 +4,10 @@ The `pc-letter` template allows you to effortlessly write letters for personal c
 
 ## Features
 
-- **Localisation options**: Comes with built-in localisation options for various languages and regions which trigger auto-adjustment of many layout option.
+- **Localisation options**: Comes with built-in localisation options for various languages and regions, which trigger auto-adjustment of many layout options.
 - **Adjustable style**: `pc-letter` provides numerous options to tweak fonts, font-sizes, colours etc. to your liking.
 - **Optional fields when you need them**: The template provides optional fields for a reference number, listing enclosed documents, and carbon copy recipients.
-- **Context aware page numbering**: No need to manually configure, `pc-letter` will add page numbering for you if your content flows over a single page.
+- **Context-aware page numbering**: No need to manually configure, `pc-letter` will add page numbering for you if your content flows over a single page.
 - **Print vs digital variants**: Easily switch between variants tweaked for printing or sending out digital-only correspondence.
 
 <a href="./thumbnail.png"><img src="./thumbnail.png" width="250px" alt="Example of a letter written with pc-letter."></a>
@@ -118,12 +118,12 @@ Here's a list of the available fields and functions, assuming you have used `#le
 - `letter.email-address(email)`: Wraps the email address as a clickable email-link (`mailto:someone@example.org`).
 - `letter.web-address(dest, include-schema: true)`: Wraps a URL as a clickable link. If the optional `include-schema` argument is set to `false`, the link text will hide the initial schema element (e.g. `"https://"`).
 - `letter.falzmarken()`: Can be optionally used at the start of the document to add folding marks to the left margin of the first page (two marks where you can fold the A4 paper to fit it into a DL, C5 or C6 envelope, which may be windowed). A third mark is added at the centre of the page, which can be used to centre-fold it but is principally meant to align a hole punch such that it is centred vertically.
-- `letter.address-field(recipient-address, return-address-field: auto)`: Used to set the recipient's address on the first page. The recipient's address should normally be no more than 6 lines (though it won't be clipped if it is longer) and you should include manual line-breaks. The optional `return-address-field` argument can be used to overwrite the content that appears in tiny text above the recipients address, normally used to provide a return address in case the letter cannot be delivered.
+- `letter.address-field(recipient-address, return-address-field: auto)`: Used to set the recipient's address on the first page. The recipient's address should normally be no more than 6 lines (though it won't be clipped if it is longer) and you should include manual line-breaks. The optional `return-address-field` argument can be used to overwrite the content that appears in tiny text above the recipient's address, normally used to provide a return address in case the letter cannot be delivered.
 - `letter.reference-field(reference, supplement: "Ref:")`: Can be used to optionally add a reference at the same height as the date. This can be useful when replying to correspondence from e.g. a business or the government, where the other party has given you a reference number to quote on future correspondence. The `supplement` argument can be used to optionally replace the standard text "Ref:" with something of your choice.
 - `letter.letter-style`: Encapsulates the main layout of the letter template. Should be used with a show rule (e.g. `#show: letter.letter-style` -- note the absence of the parentheses!) to activate the template after initialising it.
-- `letter.valediction(valediction, signature: none, name: auto)`: Adds a properly formatted valediction (a closing formula) at the end of the letter. The `valediction` parameter includes the acutal valediction (e.g. `(letter.valediction)[Yours faithfully,]` or `(letter.valediction)[Yours sincerely,]`) though you may of course also chose something a little more old-fashioned like `(letter.valediction)[I remain, Sir, your humble and obedient servant,]`. By default this is followed by a 3em space (a space in which you can add your signature) and then the author's name. You can use the `signature` parameter to insert some content, e.g. text or an image in place of the 3em space, and you can use the `name` parameter to use a name other than what has been set as the author's name here - or indeed to omit it altogether by setting it to `none`.
+- `letter.valediction(valediction, signature: none, name: auto)`: Adds a properly formatted valediction (a closing formula) at the end of the letter. The `valediction` parameter includes the actual valediction (e.g. `(letter.valediction)[Yours faithfully,]` or `(letter.valediction)[Yours sincerely,]`) though you may of course also choose something a little more old-fashioned like `(letter.valediction)[I remain, Sir, your humble and obedient servant,]`. By default this is followed by a 3em space (a space in which you can add your signature) and then the author's name. You can use the `signature` parameter to insert some content, e.g. text or an image in place of the 3em space, and you can use the `name` parameter to use a name other than what has been set as the author's name here - or indeed to omit it altogether by setting it to `none`.
 - `letter.cc-field(..recipients)`: Add any number of names of additional recipients whom you have sent a (carbon)-copy of the letter. If these are fewer than 3, they will be set on a single line. 3 or more will be automatically set as a list.
-- `letter.enclosed-field(..enclosures)`: Add any number of strings refering to enclosed (attached) documents. If this is a single item it will be set without a bullet, if there are more than one they will be set as a bullet list.
+- `letter.enclosed-field(..enclosures)`: Add any number of strings referring to enclosed (attached) documents. If this is a single item it will be set without a bullet, if there are more than one they will be set as a bullet list.
 
 ## How do I ...?
 
@@ -150,7 +150,7 @@ You can pass an `image` (or any other content, e.g. a CeTZ plot) as the `logo` p
 
 ## License
 
-The `pc-letter` package is free and open-source, licensed under the MIT License. See the file [`LICENSE`](./LICENSE) for mor information.
+The `pc-letter` package is free and open-source, licensed under the MIT License. See the file [`LICENSE`](./LICENSE) for more information.
 
 ## Change log
 

@@ -22,7 +22,7 @@
   CS Brian Prosser\
   Gorsaf Heddlu Aberystwyth\
   Heddlu Dyfed-Powys\
-  Boulevard Sanit Brieuc\
+  Boulevard Saint Brieuc\
   Aberystwyth SY23 1PH
 ]
 
