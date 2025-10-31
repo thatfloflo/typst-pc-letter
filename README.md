@@ -17,7 +17,7 @@ The `pc-letter` template allows you to effortlessly write letters for personal c
 To use the `pc-letter` template, just import it, initialise it, and add your content. Here's a minimal working example:
 
 ```typst
-#import "@preview/pc-letter:0.2.0"
+#import "@preview/pc-letter:0.3.0"
 
 #let letter = pc-letter.init(
     author: (
@@ -125,11 +125,55 @@ Here's a list of the available fields and functions, assuming you have used `#le
 - `letter.cc-field(..recipients)`: Add any number of names of additional recipients whom you have sent a (carbon)-copy of the letter. If these are fewer than 3, they will be set on a single line. 3 or more will be automatically set as a list.
 - `letter.enclosed-field(..enclosures)`: Add any number of strings refering to enclosed (attached) documents. If this is a single item it will be set without a bullet, if there are more than one they will be set as a bullet list.
 
+## How do I ...?
+
+### ... use an image as my signature?
+
+You can pass an `image` (or any other content, e.g. a CeTZ plot) as the `signature` parameter of the valediction. For example:
+
+```typst
+#(letter.valediction)(
+  signature: image("my-signature.png")
+)[Kind regards,]
+```
+
+### ... add a logo to the letterhead?
+
+You can pass an `image` (or any other content, e.g. a CeTZ plot) as the `logo` parameter of `pc-letter.init()`. The logo will be positioned automatically, which by and large should work well out of the box as long as your logo does not contain much unnecessary padding. Example:
+
+```typst
+#let letter = pc-letter.init(
+  name: "Jane Doe, Esq.",
+  logo: image("my-logo.png")
+)
+```
+
 ## License
 
 The `pc-letter` package is free and open-source, licensed under the MIT License. See the file [`LICENSE`](./LICENSE) for mor information.
 
 ## Change log
+
+### v0.3.0
+
+#### Added
+
+- New options to configure the letterhead:
+  - The `alignment.letterhead` style-option allows the letterhead to be aligned to the `left`, `center`, or `right`. The default remains `center`.
+  - The `components.letterhead.ascent` style-option allows the spacing between the letterhead and the content below (typically the address field) to be overwritten, which might help with better accommodating slightly larger logos, if used.
+  - `pc-letter.init` now accepts a `logo` argument which can be used to add a logo to the letterhead.
+- New example documents:
+  - [examples/example-logo.typ](./examples/example-logo.typ) shows how to use a logo in the letterhead.
+  - [examples/example-signature.typ](./examples/example-lsignature.typ) shows how to use a image as a signature.
+
+#### Changed
+
+- The readme now contains a "How do I ...?" section with examples for things users might want to know how to do without reading all the configuration options. More items can be added to this in the future.
+
+#### Fixed
+
+- A typo in the French letter example in [examples/example-fr.typ](./examples/example-fr.typ) (thanks to [gasche](https://github.com/gasche)).
+
 
 ### v0.2.0
 
