@@ -96,6 +96,7 @@ Currently supported localisations:
   - `es`: Spanish
   - `es-ES`: Spanish (Spain)
   - `fr`: French
+  - `ro`: Romanian
 
 For examples showing various localised versions, see the Repo's [`examples/`](./examples/) folder.
 
