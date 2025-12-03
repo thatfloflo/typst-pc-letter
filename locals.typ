@@ -142,6 +142,27 @@
       ),
     ),
   ),
+  ro: (
+    alignment: (
+      address-field: right,
+      date-field: right,
+      headings: left,
+      reference-field: right + horizon,
+      valediction: right,
+    ),
+    date: (
+      format: "[day padding:none] [month repr:long] [year]",
+    ),
+    components: (
+      place-name: (
+        display: true,
+        pattern: "[place-name],"
+      ),
+      return-address-field: (
+        display: false,
+      ),
+    ),
+  ),
 )
 
 #let strings = (
@@ -269,6 +290,27 @@
       "10": "octobre",
       "11": "novembre",
       "12": "décembre",
+    )
+  ),
+  ro: (
+    reference:   "Referitor:",
+    carbon-copy: "c.c.:",
+    enclosed-sg: "Anexă:",
+    enclosed-pl: "Anexe:",
+    page-xy:     "Pagina [X] din [Y]",
+    months: (
+      "1": "Ianuarie",
+      "2": "Februarie",
+      "3": "Martie",
+      "4": "Aprilie",
+      "5": "Mai",
+      "6": "Iunie",
+      "7": "Iulie",
+      "8": "August",
+      "9": "Septembrie",
+      "10": "Octombrie",
+      "11": "Noiembrie",
+      "12": "Decembrie",
     )
   ),
 )
