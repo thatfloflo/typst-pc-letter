@@ -5,7 +5,7 @@
       name: "Melania Lupu",
       address: ("Strada Mimozei, Nr. 13", "Sector 2, București"), 
       phone: "031 123 45 67",
-      email: "melania.lupu@exemplu.ro",
+      email: "melania.lupu@example.org",
   ),
   date: datetime(day: 25, month: 5, year: 2025),
   place-name: "București",
@@ -44,8 +44,6 @@ In sit amet mi eleifend, viverra tortor ut, ultricies nunc. Etiam mollis neque a
 Ut metus turpis, varius sed risus ut, tempus mattis odio. Ut a sodales mauris. Vivamus tincidunt purus ex, pellentesque dignissim neque dignissim sed.
 
 Aliquam sem nibh, eleifend facilisis nunc at, elementum eleifend lacus. Vivamus nec justo est. Nam tincidunt felis eget posuere auctor. Vivamus erat purus, elementum eget lobortis eget, rutrum eu felis. Aliquam ex nulla, auctor fermentum enim sed, cursus hendrerit mauris.
-
-Avec mes remerciements, je vous prie de trouver ici, Monsieur, l’expression de mes sentiments distingués.
 
 #(letter.valediction)(signature: text(size: 2.5em, font: ("Edwardian Script ITC", "Brush Script MT", "cursive"), "Melania"))[]
 
