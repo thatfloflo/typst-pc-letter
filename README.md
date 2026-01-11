@@ -17,7 +17,7 @@ The `pc-letter` template allows you to effortlessly write letters for personal c
 To use the `pc-letter` template, just import it, initialise it, and add your content. Here's a minimal working example:
 
 ```typst
-#import "@preview/pc-letter:0.3.0"
+#import "@preview/pc-letter:0.3.1"
 
 #let letter = pc-letter.init(
     author: (
@@ -149,11 +149,19 @@ You can pass an `image` (or any other content, e.g. a CeTZ plot) as the `logo` p
 )
 ```
 
+By default, the logo has close-to-zero padding. You can wrap the `image(...)` inside a [`pad(...)`](https://typst.app/docs/reference/layout/pad/) element if you want to add some spacing around the logo, e.g. `pad(bottom: 1pt, image("my-logo.png"))` to add 1pt of padding at the bottom of the logo.
+
 ## License
 
 The `pc-letter` package is free and open-source, licensed under the MIT License. See the file [`LICENSE`](./LICENSE) for more information.
 
 ## Change log
+
+### v0.3.1
+
+#### Added
+
+- New Romanian localisation and example (see [examples/example-ro.typ](./examples/example-ro.typ)) (thanks to [KoNickss](https://github.com/KoNickss))
 
 ### v0.3.0
 
