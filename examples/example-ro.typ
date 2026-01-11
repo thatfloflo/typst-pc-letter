@@ -45,7 +45,7 @@ Ut metus turpis, varius sed risus ut, tempus mattis odio. Ut a sodales mauris. V
 
 Aliquam sem nibh, eleifend facilisis nunc at, elementum eleifend lacus. Vivamus nec justo est. Nam tincidunt felis eget posuere auctor. Vivamus erat purus, elementum eget lobortis eget, rutrum eu felis. Aliquam ex nulla, auctor fermentum enim sed, cursus hendrerit mauris.
 
-#(letter.valediction)(signature: text(size: 2.5em, font: ("Edwardian Script ITC", "Brush Script MT", "cursive"), "Melania"))[]
+#(letter.valediction)(signature: text(size: 2.5em, font: ("Edwardian Script ITC", "Brush Script MT", "cursive"), "Melania"))[Cu stimă,]
 
 #(letter.enclosed-field)("Schița Muzeului", "Scrisori diverse")
 
