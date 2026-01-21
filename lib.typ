@@ -1,6 +1,6 @@
 /// pc-letter: A simple template for personal correspondence.
 
-#import "locals.typ"
+#import "locales.typ"
 
 /// Deep merge two dictionaries
 /// 
@@ -333,13 +333,13 @@
   // Prepare letter style settings
   let tmp-style = _deep-merge-dicts(_default-style, style)
   let tmp-locale = tmp-style.locale.lang + "-" + tmp-style.locale.region
-  if tmp-locale in locals.default-styles {
-    tmp-style = _deep-merge-dicts(_default-style, locals.default-styles.at(tmp-locale))
-  } else if tmp-style.locale.lang in locals.default-styles {
-    tmp-style = _deep-merge-dicts(_default-style, locals.default-styles.at(tmp-style.locale.lang))
+  if tmp-locale in locales.default-styles {
+    tmp-style = _deep-merge-dicts(_default-style, locales.default-styles.at(tmp-locale))
+  } else if tmp-style.locale.lang in locales.default-styles {
+    tmp-style = _deep-merge-dicts(_default-style, locales.default-styles.at(tmp-style.locale.lang))
   } else {
     // If no matching locale is found even at just the lang level, assume "en"
-    tmp-style = _deep-merge-dicts(_default-style, locals.default-styles.at("en"))
+    tmp-style = _deep-merge-dicts(_default-style, locales.default-styles.at("en"))
   }
   style = _deep-merge-dicts(tmp-style, style)
   if style.page.fill == auto {
@@ -492,7 +492,7 @@
     ]
     #context {
       let x-offset = 0mm
-      if style.alignment.address-field == right {
+      if style.alignment.address-field.x == right {
         x-offset = _page-dimensions.width - _page-margins.left - _page-margins.right - 2mm
         if (style.components.return-address-field.display 
             and measure(return-address-field).width > measure(recipient-field).width) {
@@ -501,11 +501,19 @@
           x-offset -= measure(recipient-field).width
         }
       }
+      let y-offset = 17.7mm - 10mm
+      if style.alignment.address-field.y == horizon {
+        y-offset += 10mm
+        // Alternative calculation from bottom margin (moves upward dynamically):
+        //y-offset += 25mm - (measure(recipient-field).height + measure(return-address-field).height)
+      } else if style.alignment.address-field.y == bottom {
+        y-offset += 40mm - (measure(recipient-field).height + measure(return-address-field).height)
+      }
       if style.components.return-address-field.display {
         place(
           top + left,
           dx: x-offset,
-          dy: (0mm - 10mm),
+          dy: y-offset - 17.7mm,
           rect(
             height: 17.7mm,
             width: 90mm,
@@ -528,7 +536,7 @@
       place(
         top + left,
         dx: x-offset,
-        dy: (17.7mm - 10mm),
+        dy: y-offset,
         rect(
           height: 27.3mm,
           width: 90mm,
@@ -558,7 +566,7 @@
     /// argument can be used to customise/overwrite this text.
     /// 
     /// -> content | str
-    supplement: locals.get-strings(style.locale).reference
+    supplement: locales.get-strings(style.locale).reference
   ) = [
     #let field-alignment = top + style.alignment.reference-field.x
     #let y-offset = 0mm
@@ -645,7 +653,7 @@
         #set align(right)
         #set text(size: style.text.size.small)
         #if counter(page).final().at(0) > 1 {
-          locals.get-strings(style.locale).page-xy
+          locales.get-strings(style.locale).page-xy
             .replace("[X]", str(counter(page).get().at(0)))
             .replace("[Y]", str(counter(page).final().at(0)))
         }
@@ -683,7 +691,7 @@
         #if style.components.place-name.display and place-name != none [
           #style.components.place-name.pattern.replace("[place-name]", place-name)
         ]
-        #locals.localise-date(date, style.date.format, style.locale)
+        #locales.localise-date(date, style.date.format, style.locale)
       ]
     )
     #v(31.46mm + 45mm - 10mm)
@@ -771,7 +779,7 @@
     #set par(first-line-indent: 0em)
     #block(inset: _inset, breakable: false)[
       #stack(dir: ltr, spacing: 0.5em)[
-        #text(style: "italic", locals.get-strings(style.locale).carbon-copy)
+        #text(style: "italic", locales.get-strings(style.locale).carbon-copy)
       ][
         #if recipients.pos().len() < 3 {
           recipients.pos().join(", ")
@@ -806,13 +814,13 @@
     #block(inset: _inset, breakable: false)[
       #if enclosures.pos().len() < 2 {
         stack(dir: ltr, spacing: 0.5em)[
-          #text(style: "italic", locals.get-strings(style.locale).enclosed-sg)
+          #text(style: "italic", locales.get-strings(style.locale).enclosed-sg)
         ][
           #enclosures.pos().at(0)
         ]
       } else {
         stack(dir: ltr, spacing: 0.5em)[
-          #text(style: "italic", locals.get-strings(style.locale).enclosed-pl)
+          #text(style: "italic", locales.get-strings(style.locale).enclosed-pl)
         ][
           #for enclosure in enclosures.pos() {
             [- #enclosure]
