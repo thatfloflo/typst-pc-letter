@@ -66,7 +66,7 @@ The `pc-letter.init()` function takes the following arguments:
   - `text.size.tiny`: The smallest font-size used by the template. Default: 8pt.
   - `text.fill.headline`: The colour to be used for the author's name on the letterhead. Default #800022, a deep burgundy.
   - `text.fill.faded`: The colour to be used for text (and some lines) that should appear slightly less prominent compared to adjacent text. Default: 80% gray.
-  - `alignment.address-field`: Whether to align the address field `left` or `right`. Default: `auto`.
+  - `alignment.address-field`: How to align the address field. Horizontally `left` or `right`, and vertically `top`, `bottom` or `horizon` (`bottom` aligns it just above the first falzmarke, `horizon` in an intermediate position between `top` and `bottom`). Default: `auto`.
   - `alignment.date-field`: How to align the date field. Horizontally `left`, `center` or `right`, and vertically `top`, `bottom` or `horizon` (`horizon` aligns it just above the first falzmarke). Default: `auto`.
   - `alignment.headings`: Whether to align headings (first and second level) flush `left` or `center`-ed. Default: `auto`.
   - `alignment.letterhead`: Whether to align the letterhead to the `left`, `right` or `center` of the page. Default: `center`.
@@ -96,6 +96,7 @@ Currently supported localisations:
   - `es`: Spanish
   - `es-ES`: Spanish (Spain)
   - `fr`: French
+  - `it`: Italian
   - `ro`: Romanian
 
 For examples showing various localised versions, see the Repo's [`examples/`](./examples/) folder.

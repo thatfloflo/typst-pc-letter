@@ -142,6 +142,27 @@
       ),
     ),
   ),
+  it: (
+    alignment: (
+      address-field: right + horizon,
+      date-field: right + top,
+      headings: left,
+      reference-field: left + horizon,
+      valediction: right,
+    ),
+    date: (
+      format: "[day padding:none] [month repr:long] [year]",
+    ),
+    components: (
+      place-name: (
+        display: true,
+        pattern: "[place-name],"
+      ),
+      return-address-field: (
+        display: false,
+      ),
+    ),
+  ),
   ro: (
     alignment: (
       address-field: right,
@@ -290,6 +311,27 @@
       "10": "octobre",
       "11": "novembre",
       "12": "décembre",
+    )
+  ),
+  it: (
+    reference:   "Rif:",
+    carbon-copy: "cc:",
+    enclosed-sg: "All.:",
+    enclosed-pl: "All.:",
+    page-xy:     "Pagina [X] di [Y]",
+    months: (
+      "1": "gennaio",
+      "2": "febbraio",
+      "3": "marzo",
+      "4": "aprile",
+      "5": "maggio",
+      "6": "giugno",
+      "7": "luglio",
+      "8": "agosto",
+      "9": "settembre",
+      "10": "ottobre",
+      "11": "novembre",
+      "12": "dicembre",
     )
   ),
   ro: (

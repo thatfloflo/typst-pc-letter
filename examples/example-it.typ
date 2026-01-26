@@ -2,15 +2,15 @@
 
 #let letter = pc-letter.init(
   author: (
-      name: "Arsène Lupin",
-      address: ("8 Rue Crevaux", "75116 Paris"),
-      phone: "01 47 51 73 82",
-      email: "lupin@example.org"
+      name: "Salvo Montalbano",
+      address: ("Via del Mare, 10", "97017 Marinella RG"),
+      phone: "334 555 8721",
+      email: "montalbano.s@example.org"
   ),
-  date: datetime(day: 25, month: 5, year: 2025),
-  place-name: "Paris",
+  date: datetime(day: 16, month: 7, year: 2022),
+  place-name: "Vigàta",
   style: (
-    locale: (lang: "fr", region: "FR"),
+    locale: (lang: "it", region: "IT"),
     medium: "digital",
     alignment: (valediction: right),
   ),
@@ -21,18 +21,16 @@
 #(letter.falzmarken)()
 
 #(letter.address-field)[
-  Assane Diop\
-  c/o Benjamin Férel\
-  Marché Biron\
-  85 Rue des Rosiers\
-  93400 Saint-Ouen-sur-Seine
+  Spett.le Sig.ra Sjöström Ingrid\
+  Via della Cattedrale, 12\
+  92100 Montelusa AG
 ]
 
-#(letter.reference-field)[JST-17/SH]
+#(letter.reference-field)[22/MS-PAG]
 
-= Objet : Votre demande concernant un certain détective anglais
+= Oggetto: Uno strano avvenimento nei pressi di Agrigento
 
-Monsieur,
+Gentile Signora Sjöström,
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in sapien sed orci sodales mollis eget vel elit. Sed ultricies risus in neque eleifend, malesuada lacinia ipsum iaculis. Pellentesque enim purus, sagittis congue dolor ut, ullamcorper rutrum quam. Praesent suscipit orci at mauris finibus malesuada.
 
@@ -40,16 +38,14 @@ Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculu
 
 In sit amet mi eleifend, viverra tortor ut, ultricies nunc. Etiam mollis neque ac erat placerat, id pharetra nisi tempus. Etiam nisi ipsum, bibendum in nisi eu, euismod finibus libero.
 
-== Titre d'une partie inférieure:
+== Titolo di una sottosezione
 
 Ut metus turpis, varius sed risus ut, tempus mattis odio. Ut a sodales mauris. Vivamus tincidunt purus ex, pellentesque dignissim neque dignissim sed.
 
 Aliquam sem nibh, eleifend facilisis nunc at, elementum eleifend lacus. Vivamus nec justo est. Nam tincidunt felis eget posuere auctor. Vivamus erat purus, elementum eget lobortis eget, rutrum eu felis. Aliquam ex nulla, auctor fermentum enim sed, cursus hendrerit mauris.
 
-Avec mes remerciements, je vous prie de trouver ici, Monsieur, l’expression de mes sentiments distingués.
+#(letter.valediction)(signature: text(size: 2.5em, font: ("French Script MT", "Syne Tactile"), "Salvo Montalbano"))[Distinti saluti,]
 
-#(letter.valediction)(signature: text(size: 2.5em, font: ("French Script MT", "Syne Tactile"), "A. Lupin"))[]
+#(letter.enclosed-field)("Fotografia del luogo", "Dichiarazione del testimone")
 
-#(letter.enclosed-field)("Plan du site", "Notes manuscrites")
-
-#(letter.cc-field)("Claire Laurent")
+#(letter.cc-field)("Nicolò Zito")
