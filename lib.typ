@@ -73,6 +73,26 @@
       display: auto,
     ),
   ),
+  // The letterhead name and the address/contact block beneath it can each be
+  // given their own font settings, independent of the body font
+  // (`style.text.font`) and the shared "faded" text colour
+  // (`style.text.fill.faded`). Leaving these as `auto` preserves the
+  // template's previous behaviour (letterhead name in the body font at
+  // weight 500, address/contact block in the body font using the faded
+  // colour).
+  header: (
+    text: (
+      font: auto,
+      size: 1.125em,
+      weight: auto,
+    ),
+    address: (
+      text: (
+        font: auto,
+        fill: auto,
+      ),
+    ),
+  ),
 )
 
 /// The default author settings for the template
@@ -237,6 +257,19 @@
   ///   (`true` or `false`). If set to `auto`, whether to display the return
   ///   address field is determined based on the specified `locale`.
   ///   Default: `auto`.
+  /// / `header.text.font`: The typeface used for the author's name in the
+  ///   letterhead. If set to `auto`, the body font (`text.font`) is used.
+  ///   Default: `auto`.
+  /// / `header.text.size`: The font-size used for the author's name in the
+  ///   letterhead. Default: `1.125em`.
+  /// / `header.text.weight`: The font-weight used for the author's name in
+  ///   the letterhead. If set to `auto`, defaults to `500`. Default: `auto`.
+  /// / `header.address.text.font`: The typeface used for the address/contact
+  ///   block beneath the letterhead name. If set to `auto`, the body font
+  ///   (`text.font`) is used. Default: `auto`.
+  /// / `header.address.text.fill`: The colour used for the address/contact
+  ///   block beneath the letterhead name. If set to `auto`, `text.fill.faded`
+  ///   is used. Default: `auto`.
   /// 
   ///  -> dictionary
   style: (:)
@@ -355,6 +388,21 @@
     } else {
       style.components.letterhead.ascent = 12mm
     }
+  }
+  // Resolve auto header font settings against the body font.
+  if style.header.text.font == auto {
+    style.header.text.font = style.text.font
+  }
+  if style.header.text.weight == auto {
+    style.header.text.weight = 500
+  }
+  // Resolve the address block's font/fill, falling back to the body font
+  // and the shared "faded" fill if not set explicitly.
+  if style.header.address.text.font == auto {
+    style.header.address.text.font = style.text.font
+  }
+  if style.header.address.text.fill == auto {
+    style.header.address.text.fill = style.text.fill.faded
   }
   // Prepare letter date
   if date == auto {
@@ -605,12 +653,22 @@
       }
     ][
       #text(
-        weight: 500,
-        size: 1.125em,
+        // The letterhead name uses its own font settings
+        // (style.header.text.*) instead of the body font.
+        font: style.header.text.font,
+        weight: style.header.text.weight,
+        size: style.header.text.size,
         fill: style.text.fill.headline,
         spaced-smallcaps[#author.name]
       )\
-      #set text(size: style.text.size.small, fill: style.text.fill.faded)
+      // The address/contact block uses its own font+fill
+      // (style.header.address.text.*), not the document body font or the
+      // general "faded" fill shared by the footer/falzmarken.
+      #set text(
+        size: style.text.size.small,
+        font: style.header.address.text.font,
+        fill: style.header.address.text.fill,
+      )
       #if _prepared-author-address != none {
         _prepared-author-address
         linebreak()

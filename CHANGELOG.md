@@ -2,6 +2,15 @@
 
 This file documents all notable changes to the [`pc-letter`](https://github.com/thatfloflo/pc-letter) project.
 
+## Unreleased
+
+### Added
+
+- New style options to customise the letterhead's typography independently of the body font:
+  - `header.text.font`, `header.text.size`, and `header.text.weight` control the typeface, size, and weight of the author's name in the letterhead.
+  - `header.address.text.font` and `header.address.text.fill` control the typeface and colour of the address/contact block beneath the letterhead name.
+  - All new options default to `auto`, which preserves the template's previous behaviour, so this is a fully backwards-compatible change.
+
 ## v0.4.0
 
 ### Added

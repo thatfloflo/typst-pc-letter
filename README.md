@@ -96,6 +96,11 @@ The `pc-letter.init()` function takes the following arguments:
   - `components.place-name.display`: Whether to display the place name next to the date (`true` or `false`). Note that even if this is set to `true`, a place name is only shown on the letter if it is specified as an argument to `pc-letter.init()`. Default: `auto`.
   - `components.place-name.pattern`: A pattern to format the place name, where `"[place-name]"` will be replaced with the place name. Default: `"[place-name],"`.
   - `components.return-address-field.display`: Whether to display the return address field immediately on top of the recipient's address or not (`true` or `false`). Default: `auto`.
+  - `header.text.font`: The typeface used for the author's name in the letterhead. If set to `auto`, the body font (`text.font`) is used. Default: `auto`.
+  - `header.text.size`: The font-size used for the author's name in the letterhead. Default: `1.125em`.
+  - `header.text.weight`: The font-weight used for the author's name in the letterhead. If set to `auto`, defaults to `500`. Default: `auto`.
+  - `header.address.text.font`: The typeface used for the address/contact block beneath the letterhead name. If set to `auto`, the body font (`text.font`) is used. Default: `auto`.
+  - `header.address.text.fill`: The colour used for the address/contact block beneath the letterhead name. If set to `auto`, `text.fill.faded` is used. Default: `auto`.
 
 ### Fields
 
@@ -225,6 +230,23 @@ You can pass an `image` (or any other content, e.g. a CeTZ plot) as the `logo` p
 ```
 
 By default, the logo has close-to-zero padding. You can wrap the `image(...)` inside a [`pad(...)`](https://typst.app/docs/reference/layout/pad/) element if you want to add some spacing around the logo, e.g. `pad(bottom: 1pt, image("my-logo.png"))` to add 1pt of padding at the bottom of the logo.
+
+### ... use a different font for the letterhead name?
+
+By default the author's name in the letterhead is set in the body font (`style.text.font`) at weight `500`. If you'd like the letterhead to stand out with, say, a brand or display typeface while keeping the rest of the letter in your regular body font, set `style.header.text.font` (and optionally `style.header.text.size` and `style.header.text.weight`):
+
+```typst
+#let letter = pc-letter.init(
+  author: (name: "Jane Doe, Esq."),
+  style: (
+    header: (
+      text: (font: "Space Grotesk", weight: 600),
+    ),
+  ),
+)
+```
+
+The address/contact block beneath the letterhead name can similarly be given its own font and colour via `style.header.address.text.font` and `style.header.address.text.fill`, independent of the body font and the shared `text.fill.faded` colour used elsewhere (e.g. the footer).
 
 ## Contributing
 
